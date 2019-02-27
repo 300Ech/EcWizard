@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
-import com.tech.freak.wizardpager.ui.TextFragment;
+
+import com.evertschavez.ecwizardlibrary.ui.TextFragment;
 
 public class TextPage extends Page {
 

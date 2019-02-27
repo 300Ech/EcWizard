@@ -1,7 +1,8 @@
 package com.evertschavez.ecwizardlibrary.model;
 
 import android.support.v4.app.Fragment;
-import com.tech.freak.wizardpager.ui.ImageFragment;
+
+import com.evertschavez.ecwizardlibrary.ui.ImageFragment;
 
 public class ImagePage extends TextPage {
 

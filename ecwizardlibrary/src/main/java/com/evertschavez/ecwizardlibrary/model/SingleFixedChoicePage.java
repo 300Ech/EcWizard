@@ -21,7 +21,8 @@ import java.util.Arrays;
 
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
-import com.tech.freak.wizardpager.ui.SingleChoiceFragment;
+
+import com.evertschavez.ecwizardlibrary.ui.SingleChoiceFragment;
 
 /**
  * A page offering the user a number of mutually exclusive choices.

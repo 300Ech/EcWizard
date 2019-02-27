@@ -1,7 +1,8 @@
 package com.evertschavez.ecwizardlibrary.model;
 
 import android.support.v4.app.Fragment;
-import com.tech.freak.wizardpager.ui.GeoFragment;
+
+import com.evertschavez.ecwizardlibrary.ui.GeoFragment;
 
 public class GeoPage extends TextPage {
 

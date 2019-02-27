@@ -19,7 +19,8 @@ package com.evertschavez.ecwizardlibrary.model;
 import java.util.ArrayList;
 
 import android.support.v4.app.Fragment;
-import com.tech.freak.wizardpager.ui.MultipleChoiceFragment;
+
+import com.evertschavez.ecwizardlibrary.ui.MultipleChoiceFragment;
 
 /**
  * A page offering the user a number of non-mutually exclusive choices.

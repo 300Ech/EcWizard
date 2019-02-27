@@ -1,7 +1,8 @@
 package com.evertschavez.ecwizardlibrary.model;
 
 import android.support.v4.app.Fragment;
-import com.tech.freak.wizardpager.ui.NumberFragment;
+
+import com.evertschavez.ecwizardlibrary.ui.NumberFragment;
 
 public class NumberPage extends TextPage {
 
