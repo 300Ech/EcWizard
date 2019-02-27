@@ -81,7 +81,7 @@ public class ImageFragment extends Fragment {
 		((TextView) rootView.findViewById(android.R.id.title)).setText(mPage
 				.getTitle());
 
-		imageView = (ImageView) rootView.findViewById(R.id.imageView);
+		imageView = rootView.findViewById(R.id.imageView);
 
 		String imageData = mPage.getData().getString(Page.SIMPLE_DATA_KEY);
 		if (!TextUtils.isEmpty(imageData)) {

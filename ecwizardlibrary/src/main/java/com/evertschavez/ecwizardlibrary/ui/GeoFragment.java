@@ -65,11 +65,11 @@ public class GeoFragment extends Fragment implements SimpleLocationListener {
         ((TextView) rootView.findViewById(android.R.id.title)).setText(mPage
                 .getTitle());
 
-        textViewLocationStatus = (TextView) rootView
+        textViewLocationStatus = rootView
                 .findViewById(R.id.textViewLocationStatus);
-        textViewLocation = (TextView) rootView
+        textViewLocation = rootView
                 .findViewById(R.id.textViewLocation);
-        progressBar = (ProgressBar) rootView.findViewById(R.id.progressBar);
+        progressBar = rootView.findViewById(R.id.progressBar);
 
         String currentData = mPage.getData().getString(Page.SIMPLE_DATA_KEY);
 
@@ -153,8 +153,6 @@ public class GeoFragment extends Fragment implements SimpleLocationListener {
                 progressBar.setVisibility(View.VISIBLE);
             }
 
-            ;
-
             @Override
             protected String doInBackground(Void... params) {
                 try {
@@ -189,11 +187,11 @@ public class GeoFragment extends Fragment implements SimpleLocationListener {
     }
 
     public interface LocationUpdatesHandler {
-        public void setLocationListener(SimpleLocationListener locationListener);
+        void setLocationListener(SimpleLocationListener locationListener);
 
-        public void startLocationUpdates();
+        void startLocationUpdates();
 
-        public void stopLocationUpdates();
+        void stopLocationUpdates();
     }
 
 }

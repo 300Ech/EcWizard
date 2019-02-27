@@ -52,7 +52,7 @@ public class TextFragment extends Fragment {
 		((TextView) rootView.findViewById(android.R.id.title)).setText(mPage
 				.getTitle());
 
-		mEditTextInput = (EditText) rootView.findViewById(R.id.editTextInput);
+		mEditTextInput = rootView.findViewById(R.id.editTextInput);
 		mEditTextInput.setText(mPage.getData().getString(Page.SIMPLE_DATA_KEY));
 		return rootView;
 	}
