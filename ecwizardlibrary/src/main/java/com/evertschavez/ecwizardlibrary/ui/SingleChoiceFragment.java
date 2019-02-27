@@ -73,7 +73,10 @@ public class SingleChoiceFragment extends ListFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_page, container, false);
-        ((TextView) rootView.findViewById(android.R.id.title)).setText(mPage.getTitle());
+
+        TextView titleView = rootView.findViewById(android.R.id.title);
+        titleView.setText(mPage.getTitle());
+        titleView.setTextColor(getResources().getColor(R.color.title_color));
 
         final ListView listView = rootView.findViewById(android.R.id.list);
         setListAdapter(new ArrayAdapter<>(getActivity(),

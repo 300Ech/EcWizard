@@ -78,8 +78,10 @@ public class ImageFragment extends Fragment {
 			Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_page_image,
 				container, false);
-		((TextView) rootView.findViewById(android.R.id.title)).setText(mPage
-				.getTitle());
+
+		TextView titleView = rootView.findViewById(android.R.id.title);
+		titleView.setText(mPage.getTitle());
+		titleView.setTextColor(getResources().getColor(R.color.title_color));
 
 		imageView = rootView.findViewById(R.id.imageView);
 

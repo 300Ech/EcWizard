@@ -49,8 +49,10 @@ public class TextFragment extends Fragment {
 			Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_page_text,
 				container, false);
-		((TextView) rootView.findViewById(android.R.id.title)).setText(mPage
-				.getTitle());
+		
+		TextView titleView = rootView.findViewById(android.R.id.title);
+		titleView.setText(mPage.getTitle());
+		titleView.setTextColor(getResources().getColor(R.color.title_color));
 
 		mEditTextInput = rootView.findViewById(R.id.editTextInput);
 		mEditTextInput.setText(mPage.getData().getString(Page.SIMPLE_DATA_KEY));

@@ -62,8 +62,10 @@ public class GeoFragment extends Fragment implements SimpleLocationListener {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_page_geo, container,
                 false);
-        ((TextView) rootView.findViewById(android.R.id.title)).setText(mPage
-                .getTitle());
+
+        TextView titleView = rootView.findViewById(android.R.id.title);
+        titleView.setText(mPage.getTitle());
+        titleView.setTextColor(getResources().getColor(R.color.title_color));
 
         textViewLocationStatus = rootView
                 .findViewById(R.id.textViewLocationStatus);
