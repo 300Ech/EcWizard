@@ -38,6 +38,7 @@ public abstract class Page implements PageTreeNode {
     protected Bundle mData = new Bundle();
     protected String mTitle;
     protected boolean mRequired = false;
+    protected boolean mShowInReview = true;
     protected String mParentKey;
 
     protected Page(ModelCallbacks callbacks, String title) {
@@ -56,6 +57,8 @@ public abstract class Page implements PageTreeNode {
     public boolean isRequired() {
         return mRequired;
     }
+
+    public boolean showInReview() { return mShowInReview; }
 
     void setParentKey(String parentKey) {
         mParentKey = parentKey;
@@ -94,6 +97,11 @@ public abstract class Page implements PageTreeNode {
 
     public Page setRequired(boolean required) {
         mRequired = required;
+        return this;
+    }
+
+    public Page showInReview(boolean showInReview) {
+        mShowInReview = showInReview;
         return this;
     }
 }
