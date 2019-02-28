@@ -36,13 +36,14 @@ import android.widget.TextView;
 import com.evertschavez.ecwizardlibrary.R;
 import com.evertschavez.ecwizardlibrary.model.MultipleFixedChoicePage;
 import com.evertschavez.ecwizardlibrary.model.Page;
+import com.evertschavez.ecwizardlibrary.model.WizardChoice;
 
 public class MultipleChoiceFragment extends ListFragment {
     private static final String ARG_KEY = "key";
 
     private PageFragmentCallbacks mCallbacks;
     private String mKey;
-    private List<String> mChoices;
+    private List<WizardChoice> mChoices;
     private Page mPage;
 
     public static MultipleChoiceFragment create(String key) {
@@ -66,7 +67,7 @@ public class MultipleChoiceFragment extends ListFragment {
         mPage = mCallbacks.onGetPage(mKey);
 
         MultipleFixedChoicePage fixedChoicePage = (MultipleFixedChoicePage) mPage;
-        mChoices = new ArrayList<>();
+        mChoices = new ArrayList<WizardChoice>();
         for (int i = 0; i < fixedChoicePage.getOptionCount(); i++) {
             mChoices.add(fixedChoicePage.getOptionAt(i));
         }
@@ -82,7 +83,7 @@ public class MultipleChoiceFragment extends ListFragment {
         titleView.setTextColor(getResources().getColor(R.color.title_color));
 
         final ListView listView = rootView.findViewById(android.R.id.list);
-        setListAdapter(new ArrayAdapter<>(getActivity(),
+        setListAdapter(new ArrayAdapter<WizardChoice>(getActivity(),
                 android.R.layout.simple_list_item_multiple_choice,
                 android.R.id.text1,
                 mChoices));
@@ -101,7 +102,7 @@ public class MultipleChoiceFragment extends ListFragment {
                 Set<String> selectedSet = new HashSet<String>(selectedItems);
 
                 for (int i = 0; i < mChoices.size(); i++) {
-                    if (selectedSet.contains(mChoices.get(i))) {
+                    if (selectedSet.contains(mChoices.get(i).getPageKey())) {
                         listView.setItemChecked(i, true);
                     }
                 }

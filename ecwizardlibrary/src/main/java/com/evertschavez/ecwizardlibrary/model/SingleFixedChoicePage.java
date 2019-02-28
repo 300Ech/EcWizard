@@ -28,7 +28,7 @@ import com.evertschavez.ecwizardlibrary.ui.SingleChoiceFragment;
  * A page offering the user a number of mutually exclusive choices.
  */
 public class SingleFixedChoicePage extends Page {
-    protected ArrayList<String> mChoices = new ArrayList<String>();
+    protected ArrayList<WizardChoice> mChoices = new ArrayList<WizardChoice>();
 
     public SingleFixedChoicePage(ModelCallbacks callbacks, String title) {
         super(callbacks, title);
@@ -39,7 +39,7 @@ public class SingleFixedChoicePage extends Page {
         return SingleChoiceFragment.create(getKey());
     }
 
-    public String getOptionAt(int position) {
+    public WizardChoice getOptionAt(int position) {
         return mChoices.get(position);
     }
 
@@ -58,7 +58,7 @@ public class SingleFixedChoicePage extends Page {
         return !TextUtils.isEmpty(mData.getString(SIMPLE_DATA_KEY));
     }
 
-    public SingleFixedChoicePage setChoices(String... choices) {
+    public SingleFixedChoicePage setChoices(WizardChoice... choices) {
         mChoices.addAll(Arrays.asList(choices));
         return this;
     }

@@ -33,12 +33,13 @@ import android.widget.TextView;
 import com.evertschavez.ecwizardlibrary.R;
 import com.evertschavez.ecwizardlibrary.model.Page;
 import com.evertschavez.ecwizardlibrary.model.SingleFixedChoicePage;
+import com.evertschavez.ecwizardlibrary.model.WizardChoice;
 
 public class SingleChoiceFragment extends ListFragment {
     private static final String ARG_KEY = "key";
 
     private PageFragmentCallbacks mCallbacks;
-    private List<String> mChoices;
+    private List<WizardChoice> mChoices;
     private String mKey;
     private Page mPage;
 
@@ -63,7 +64,7 @@ public class SingleChoiceFragment extends ListFragment {
         mPage = mCallbacks.onGetPage(mKey);
 
         SingleFixedChoicePage fixedChoicePage = (SingleFixedChoicePage) mPage;
-        mChoices = new ArrayList<>();
+        mChoices = new ArrayList<WizardChoice>();
         for (int i = 0; i < fixedChoicePage.getOptionCount(); i++) {
             mChoices.add(fixedChoicePage.getOptionAt(i));
         }
