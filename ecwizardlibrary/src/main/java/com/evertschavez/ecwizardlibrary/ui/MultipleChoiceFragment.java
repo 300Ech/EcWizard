@@ -34,6 +34,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.evertschavez.ecwizardlibrary.R;
+import com.evertschavez.ecwizardlibrary.adapters.CustomAdapter;
 import com.evertschavez.ecwizardlibrary.model.MultipleFixedChoicePage;
 import com.evertschavez.ecwizardlibrary.model.Page;
 import com.evertschavez.ecwizardlibrary.model.WizardChoice;
@@ -41,9 +42,10 @@ import com.evertschavez.ecwizardlibrary.model.WizardChoice;
 public class MultipleChoiceFragment extends ListFragment {
     private static final String ARG_KEY = "key";
 
+    private static CustomAdapter adapter;
     private PageFragmentCallbacks mCallbacks;
     private String mKey;
-    private List<WizardChoice> mChoices;
+    private ArrayList<WizardChoice> mChoices;
     private Page mPage;
 
     public static MultipleChoiceFragment create(String key) {
@@ -75,7 +77,7 @@ public class MultipleChoiceFragment extends ListFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+                             Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_page, container, false);
 
         TextView titleView = rootView.findViewById(android.R.id.title);
@@ -83,10 +85,12 @@ public class MultipleChoiceFragment extends ListFragment {
         titleView.setTextColor(getResources().getColor(R.color.title_color));
 
         final ListView listView = rootView.findViewById(android.R.id.list);
-        setListAdapter(new ArrayAdapter<WizardChoice>(getActivity(),
+        adapter = new CustomAdapter(mChoices, getActivity().getApplicationContext());
+        listView.setAdapter(adapter);
+        /*setListAdapter(new ArrayAdapter<WizardChoice>(getActivity(),
                 android.R.layout.simple_list_item_multiple_choice,
                 android.R.id.text1,
-                mChoices));
+                mChoices));*/
         listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
         // Pre-select currently selected items.
@@ -135,7 +139,7 @@ public class MultipleChoiceFragment extends ListFragment {
         ArrayList<String> selections = new ArrayList<String>();
         for (int i = 0; i < checkedPositions.size(); i++) {
             if (checkedPositions.valueAt(i)) {
-                selections.add(getListAdapter().getItem(checkedPositions.keyAt(i)).toString());
+                selections.add(adapter.getItem(checkedPositions.keyAt(i)).getPageKey());
             }
         }
 

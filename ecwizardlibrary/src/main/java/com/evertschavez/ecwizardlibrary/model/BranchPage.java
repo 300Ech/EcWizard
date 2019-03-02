@@ -55,7 +55,7 @@ public class BranchPage extends SingleFixedChoicePage {
     public void flattenCurrentPageSequence(ArrayList<Page> destination) {
         super.flattenCurrentPageSequence(destination);
         for (Branch branch : mBranches) {
-            if (branch.choice.equals(mData.getString(Page.SIMPLE_DATA_KEY))) {
+            if (branch.choice.getPageKey().equals(mData.getString(Page.SIMPLE_DATA_KEY))) {
                 branch.childPageList.flattenCurrentPageSequence(destination);
                 break;
             }

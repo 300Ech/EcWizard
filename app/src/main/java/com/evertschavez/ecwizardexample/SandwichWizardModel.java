@@ -19,69 +19,72 @@ public class SandwichWizardModel extends AbstractWizardModel {
 
     @Override
     protected PageList onNewRootPageList() {
-        return new PageList(new BranchPage(this, "Order type").addBranch(
-                new WizardChoice("Sandwich","Sandwich","Sandwich"),
-                new SingleFixedChoicePage(this, "Bread").setChoices(new WizardChoice("White", "White", "White"),
-                        new WizardChoice("Wheat", "Wheat","Wheat"),
-                        new WizardChoice("Rye","Rye","Rye"),
-                        new WizardChoice("Pretzel","Pretzel","Pretzel"),
-                        new WizardChoice("Ciabatta","Ciabatta","Ciabatta"))
-                        .setRequired(true),
-
-                new MultipleFixedChoicePage(this, "Meats").setChoices(
-                        new WizardChoice("Pepperoni","Pepperoni","Pepperoni"),
-                        new WizardChoice("Turkey","Turkey","Turkey"),
-                        new WizardChoice("Ham","Ham","Ham"),
-                        new WizardChoice("Pastrami","Pastrami","Pastrami"),
-                        new WizardChoice("Roast Beef","Roast Beef","Roast Beef"),
-                        new WizardChoice("Bologna","Bologna","Bologna")),
-
-                new MultipleFixedChoicePage(this, "Veggies").setChoices(
-                        new WizardChoice("Tomatoes","Tomatoes","Tomatoes"),
-                        new WizardChoice("Lettuce","Lettuce","Lettuce"),
-                        new WizardChoice("Onions","Onions","Onions"),
-                        new WizardChoice("Pickles","Pickles","Pickles"),
-                        new WizardChoice("Cucumbers","Cucumbers","Cucumbers"),
-                        new WizardChoice("Peppers","Peppers","Peppers")),
-
-                new MultipleFixedChoicePage(this, "Cheeses").setChoices(
-                        new WizardChoice("Swiss","Swiss","Swiss"),
-                        new WizardChoice("American","American","American"),
-                        new WizardChoice("Pepperjack","Pepperjack","Pepperjack"),
-                        new WizardChoice("Muenster","Muenster","Muenster"),
-                        new WizardChoice("Provolone","Provolone","Provolone"),
-                        new WizardChoice("White American","White American" ,"White American"),
-                        new WizardChoice("Cheddar","Cheddar","Cheddar"),
-                        new WizardChoice("Bleu","Bleu","Bleu")),
-
-                new BranchPage(this, "Toasted?")
+        return new PageList(
+                new BranchPage(this, "Order type")
                         .addBranch(
-                                new WizardChoice("Yes", "Yes", "Yes"),
-                                new SingleFixedChoicePage(this, "Toast time")
-                                        .setChoices(new WizardChoice("30 seconds", "30 seconds", 30),
-                                                new WizardChoice("1 minute", "1 minute", 60),
-                                                new WizardChoice("2 minutes","2 minutes", 120)))
-                        .addBranch(new WizardChoice("No","No","No"))
-                        .setValue("No"))
-
-                .addBranch(
-                        new WizardChoice("Salad","Salad","Salad"),
-                        new SingleFixedChoicePage(this, "Salad type").setChoices(
-                                new WizardChoice("Greek","Greek","Greek"),
-                                new WizardChoice("Caesar","Caesar","Caesar")).setRequired(true),
-
-                        new SingleFixedChoicePage(this, "Dressing").setChoices(
-                                new WizardChoice("No dressing","No dressing","No dressing"),
-                                new WizardChoice("Balsamic","Balsamic","Balsamic"),
-                                new WizardChoice("Oil & vinegar","Oil & vinegar","Oil & vinegar"),
-                                new WizardChoice("Thousand Island","Thousand Island","Thousand Island"),
-                                new WizardChoice("Italian","Italian","Italian")).setValue("No dressing"),
-                        new NumberPage(this, "How Many Salads?").setRequired(true))
-                .setRequired(true),
-                new TextPage(this, "Comments").setRequired(true)
-
+                                new WizardChoice("Sandwich","Sandwich_KEY"),
+                                new SingleFixedChoicePage(this, "Bread")
+                                        .setChoices(
+                                                new WizardChoice("White", "White"),
+                                                new WizardChoice("Wheat", "Wheat_KEY"),
+                                                new WizardChoice("Rye","Rye_KEY"),
+                                                new WizardChoice("Pretzel","Pretzel_KEY"),
+                                                new WizardChoice("Ciabatta","Ciabatta_KEY"))
+                                        .setRequired(true),
+                                new MultipleFixedChoicePage(this, "Meats")
+                                        .setChoices(
+                                                new WizardChoice("Pepperoni","Pepperoni_KEY"),
+                                                new WizardChoice("Turkey","Turkey_KEY"),
+                                                new WizardChoice("Ham","Ham_KEY"),
+                                                new WizardChoice("Pastrami","Pastrami_KEY"),
+                                                new WizardChoice("Roast Beef","Roast Beef_KEY"),
+                                                new WizardChoice("Bologna","Bologna_KEY")),
+                                new MultipleFixedChoicePage(this, "Veggies")
+                                        .setChoices(
+                                                new WizardChoice("Tomatoes","Tomatoes_KEY"),
+                                                new WizardChoice("Lettuce","Lettuce_KEY"),
+                                                new WizardChoice("Onions","Onions_KEY"),
+                                                new WizardChoice("Pickles","Pickles_KEY"),
+                                                new WizardChoice("Cucumbers","Peppers_KEY"),
+                                                new WizardChoice("Peppers","Peppers_KEY")),
+                                new MultipleFixedChoicePage(this, "Cheeses")
+                                        .setChoices(
+                                                new WizardChoice("Swiss","Swiss_KEY"),
+                                                new WizardChoice("American","American_KEY"),
+                                                new WizardChoice("Pepperjack","Pepperjack_KEY"),
+                                                new WizardChoice("Muenster","Muenster_KEY"),
+                                                new WizardChoice("Provolone","Provolone_KEY"),
+                                                new WizardChoice("White American","White American_KEY"),
+                                                new WizardChoice("Cheddar","Cheddar_KEY"),
+                                                new WizardChoice("Bleu","Bleu_KEY")),
+                                new BranchPage(this, "Toasted?")
+                                        .addBranch(
+                                                new WizardChoice("Yes", "Yes_KEY"),
+                                                new SingleFixedChoicePage(this, "Toast time_KEY")
+                                                        .setChoices(new WizardChoice("30 seconds", "30 seconds_KEY"),
+                                                                new WizardChoice("1 minute", "1 minute_KEY"),
+                                                                new WizardChoice("2 minutes","2 minutes_KEY")))
+                                        .addBranch(new WizardChoice("No","No_KEY"))
+                                        .setValue("No"))
+                        .addBranch(
+                                new WizardChoice("Salad","Salad_KEY"),
+                                new SingleFixedChoicePage(this, "Salad type_KEY")
+                                        .setChoices(
+                                                new WizardChoice("Greek","Greek_KEY"),
+                                                new WizardChoice("Caesar","Caesar_KEY"))
+                                        .setRequired(true),
+                                new SingleFixedChoicePage(this, "Dressing")
+                                        .setChoices(
+                                                new WizardChoice("No dressing","No dressing_KEY"),
+                                                new WizardChoice("Balsamic","Balsamic_KEY"),
+                                                new WizardChoice("Oil & vinegar","Oil & vinegar_KEY"),
+                                                new WizardChoice("Thousand Island","Thousand Island_KEY"),
+                                                new WizardChoice("Italian","Italian"))
+                                        .setValue("No dressing_KEY"),
+                                new NumberPage(this, "How Many Salads?")
+                                        .setRequired(true))
                         .setRequired(true),
-
+                new TextPage(this, "Comments").setRequired(true).setRequired(true),
                 new CustomerInfoPage(this, "Your info").setRequired(true));
     }
 }

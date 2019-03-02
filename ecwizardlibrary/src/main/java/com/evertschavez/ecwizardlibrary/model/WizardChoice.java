@@ -5,12 +5,10 @@ import android.os.Bundle;
 public class WizardChoice {
     protected String mTitle;
     protected String mPageKey;
-    protected Object mValue;
 
-    public WizardChoice(String title, String pageKey, Object value) {
+    public WizardChoice(String title, String pageKey) {
         this.mTitle = title;
         this.mPageKey = pageKey;
-        this.mValue = value;
     }
 
     public String getTitle() {
@@ -27,13 +25,5 @@ public class WizardChoice {
 
     public void setPageKey(String mPageKey) {
         this.mPageKey = mPageKey;
-    }
-
-    public Object getValue() {
-        return mValue;
-    }
-
-    public void setValue(Object mValue) {
-        this.mValue = mValue;
     }
 }
