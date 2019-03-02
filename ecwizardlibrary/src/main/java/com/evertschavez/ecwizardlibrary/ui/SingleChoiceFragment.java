@@ -31,17 +31,14 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.evertschavez.ecwizardlibrary.R;
-import com.evertschavez.ecwizardlibrary.adapters.CustomAdapter;
 import com.evertschavez.ecwizardlibrary.model.Page;
 import com.evertschavez.ecwizardlibrary.model.SingleFixedChoicePage;
-import com.evertschavez.ecwizardlibrary.model.WizardChoice;
 
 public class SingleChoiceFragment extends ListFragment {
     private static final String ARG_KEY = "key";
 
-    private static CustomAdapter adapter;
     private PageFragmentCallbacks mCallbacks;
-    private ArrayList<WizardChoice> mChoices;
+    private List<String> mChoices;
     private String mKey;
     private Page mPage;
 
@@ -66,7 +63,7 @@ public class SingleChoiceFragment extends ListFragment {
         mPage = mCallbacks.onGetPage(mKey);
 
         SingleFixedChoicePage fixedChoicePage = (SingleFixedChoicePage) mPage;
-        mChoices = new ArrayList<WizardChoice>();
+        mChoices = new ArrayList<String>();
         for (int i = 0; i < fixedChoicePage.getOptionCount(); i++) {
             mChoices.add(fixedChoicePage.getOptionAt(i));
         }
@@ -82,12 +79,10 @@ public class SingleChoiceFragment extends ListFragment {
         titleView.setTextColor(getResources().getColor(R.color.title_color));
 
         final ListView listView = rootView.findViewById(android.R.id.list);
-        adapter = new CustomAdapter(mChoices, getActivity().getApplicationContext());
-        listView.setAdapter(adapter);
-        /*setListAdapter(new ArrayAdapter<>(getActivity(),
+        setListAdapter(new ArrayAdapter<>(getActivity(),
                 android.R.layout.simple_list_item_single_choice,
                 android.R.id.text1,
-                mChoices));*/
+                mChoices));
         listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
         // Pre-select currently selected item.
@@ -96,7 +91,7 @@ public class SingleChoiceFragment extends ListFragment {
             public void run() {
                 String selection = mPage.getData().getString(Page.SIMPLE_DATA_KEY);
                 for (int i = 0; i < mChoices.size(); i++) {
-                    if (mChoices.get(i).getPageKey().equals(selection)) {
+                    if (mChoices.get(i).equals(selection)) {
                         listView.setItemChecked(i, true);
                         break;
                     }
@@ -127,7 +122,7 @@ public class SingleChoiceFragment extends ListFragment {
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         mPage.getData().putString(Page.SIMPLE_DATA_KEY,
-                adapter.getItem(position).getPageKey());
+                getListAdapter().getItem(position).toString());
         mPage.notifyDataChanged();
     }
 }

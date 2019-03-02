@@ -34,18 +34,15 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.evertschavez.ecwizardlibrary.R;
-import com.evertschavez.ecwizardlibrary.adapters.CustomAdapter;
 import com.evertschavez.ecwizardlibrary.model.MultipleFixedChoicePage;
 import com.evertschavez.ecwizardlibrary.model.Page;
-import com.evertschavez.ecwizardlibrary.model.WizardChoice;
 
 public class MultipleChoiceFragment extends ListFragment {
     private static final String ARG_KEY = "key";
 
-    private static CustomAdapter adapter;
     private PageFragmentCallbacks mCallbacks;
     private String mKey;
-    private ArrayList<WizardChoice> mChoices;
+    private List<String> mChoices;
     private Page mPage;
 
     public static MultipleChoiceFragment create(String key) {
@@ -69,7 +66,7 @@ public class MultipleChoiceFragment extends ListFragment {
         mPage = mCallbacks.onGetPage(mKey);
 
         MultipleFixedChoicePage fixedChoicePage = (MultipleFixedChoicePage) mPage;
-        mChoices = new ArrayList<WizardChoice>();
+        mChoices = new ArrayList<String>();
         for (int i = 0; i < fixedChoicePage.getOptionCount(); i++) {
             mChoices.add(fixedChoicePage.getOptionAt(i));
         }
@@ -79,18 +76,13 @@ public class MultipleChoiceFragment extends ListFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_page, container, false);
+        ((TextView) rootView.findViewById(android.R.id.title)).setText(mPage.getTitle());
 
-        TextView titleView = rootView.findViewById(android.R.id.title);
-        titleView.setText(mPage.getTitle());
-        titleView.setTextColor(getResources().getColor(R.color.title_color));
-
-        final ListView listView = rootView.findViewById(android.R.id.list);
-        adapter = new CustomAdapter(mChoices, getActivity().getApplicationContext());
-        listView.setAdapter(adapter);
-        /*setListAdapter(new ArrayAdapter<WizardChoice>(getActivity(),
+        final ListView listView = (ListView) rootView.findViewById(android.R.id.list);
+        setListAdapter(new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_list_item_multiple_choice,
                 android.R.id.text1,
-                mChoices));*/
+                mChoices));
         listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
         // Pre-select currently selected items.
@@ -106,7 +98,7 @@ public class MultipleChoiceFragment extends ListFragment {
                 Set<String> selectedSet = new HashSet<String>(selectedItems);
 
                 for (int i = 0; i < mChoices.size(); i++) {
-                    if (selectedSet.contains(mChoices.get(i).getPageKey())) {
+                    if (selectedSet.contains(mChoices.get(i))) {
                         listView.setItemChecked(i, true);
                     }
                 }
@@ -139,7 +131,7 @@ public class MultipleChoiceFragment extends ListFragment {
         ArrayList<String> selections = new ArrayList<String>();
         for (int i = 0; i < checkedPositions.size(); i++) {
             if (checkedPositions.valueAt(i)) {
-                selections.add(adapter.getItem(checkedPositions.keyAt(i)).getPageKey());
+                selections.add(getListAdapter().getItem(checkedPositions.keyAt(i)).toString());
             }
         }
 

@@ -92,19 +92,7 @@ public class MainActivity extends AppCompatActivity implements
             @Override
             public void onClick(View view) {
                 if (mPager.getCurrentItem() == mCurrentPageSequence.size()) {
-                    DialogFragment dg = new DialogFragment() {
-                        @Override
-                        public Dialog onCreateDialog(Bundle savedInstanceState) {
-                            return new AlertDialog.Builder(getActivity())
-                                    .setMessage(R.string.submit_confirm_message)
-                                    .setPositiveButton(
-                                            R.string.submit_confirm_button,
-                                            null)
-                                    .setNegativeButton(android.R.string.cancel,
-                                            null).create();
-                        }
-                    };
-                    dg.show(getSupportFragmentManager(), "place_order_dialog");
+                    new SimpleDialog().show(getSupportFragmentManager(), "TAG");
                 } else {
                     if (mEditingAfterReview) {
                         mPager.setCurrentItem(mPagerAdapter.getCount() - 1);
@@ -221,6 +209,17 @@ public class MainActivity extends AppCompatActivity implements
         }
 
         return false;
+    }
+
+    public static class SimpleDialog extends DialogFragment {
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            return new AlertDialog.Builder(getActivity())
+                    .setMessage(R.string.submit_confirm_message).setPositiveButton(R.string.submit_confirm_button, null)
+                    .setNegativeButton(android.R.string.cancel, null).create();
+        }
+
     }
 
     public class MyPagerAdapter extends FragmentStatePagerAdapter {

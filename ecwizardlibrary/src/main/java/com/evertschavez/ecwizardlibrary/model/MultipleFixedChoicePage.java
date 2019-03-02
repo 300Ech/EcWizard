@@ -37,6 +37,8 @@ public class MultipleFixedChoicePage extends SingleFixedChoicePage {
 
     @Override
     public void getReviewItems(ArrayList<ReviewItem> dest) {
+        if (!showInReview()) return;
+
         StringBuilder sb = new StringBuilder();
 
         ArrayList<String> selections = mData.getStringArrayList(SIMPLE_DATA_KEY);

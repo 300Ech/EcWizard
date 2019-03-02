@@ -55,26 +55,17 @@ public class BranchPage extends SingleFixedChoicePage {
     public void flattenCurrentPageSequence(ArrayList<Page> destination) {
         super.flattenCurrentPageSequence(destination);
         for (Branch branch : mBranches) {
-            if (branch.choice.getPageKey().equals(mData.getString(Page.SIMPLE_DATA_KEY))) {
+            if (branch.choice.equals(mData.getString(Page.SIMPLE_DATA_KEY))) {
                 branch.childPageList.flattenCurrentPageSequence(destination);
                 break;
             }
         }
     }
 
-    /*public BranchPage addBranch(String choice, Page... childPages) {
+    public BranchPage addBranch(String choice, Page... childPages) {
         PageList childPageList = new PageList(childPages);
         for (Page page : childPageList) {
             page.setParentKey(choice);
-        }
-        mBranches.add(new Branch(choice, childPageList));
-        return this;
-    }*/
-
-    public BranchPage addBranch(WizardChoice choice, Page... childPages) {
-        PageList childPageList = new PageList(childPages);
-        for (Page page : childPageList) {
-            page.setParentKey(choice.getPageKey());
         }
         mBranches.add(new Branch(choice, childPageList));
         return this;
@@ -85,7 +76,7 @@ public class BranchPage extends SingleFixedChoicePage {
         return SingleChoiceFragment.create(getKey());
     }
 
-    public WizardChoice getOptionAt(int position) {
+    public String getOptionAt(int position) {
         return mBranches.get(position).choice;
     }
 
@@ -95,8 +86,7 @@ public class BranchPage extends SingleFixedChoicePage {
 
     @Override
     public void getReviewItems(ArrayList<ReviewItem> dest) {
-        if (showInReview())
-            dest.add(new ReviewItem(getTitle(), mData.getString(SIMPLE_DATA_KEY), getKey()));
+        dest.add(new ReviewItem(getTitle(), mData.getString(SIMPLE_DATA_KEY), getKey()));
     }
 
     @Override
@@ -116,10 +106,10 @@ public class BranchPage extends SingleFixedChoicePage {
     }
 
     private static class Branch {
-        public WizardChoice choice;
+        public String choice;
         public PageList childPageList;
 
-        private Branch(WizardChoice choice, PageList childPageList) {
+        private Branch(String choice, PageList childPageList) {
             this.choice = choice;
             this.childPageList = childPageList;
         }
