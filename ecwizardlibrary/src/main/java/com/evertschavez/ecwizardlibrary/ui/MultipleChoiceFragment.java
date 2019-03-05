@@ -78,8 +78,8 @@ public class MultipleChoiceFragment extends ListFragment {
         View rootView = inflater.inflate(R.layout.fragment_page, container, false);
         ((TextView) rootView.findViewById(android.R.id.title)).setText(mPage.getTitle());
 
-        final ListView listView = (ListView) rootView.findViewById(android.R.id.list);
-        setListAdapter(new ArrayAdapter<String>(getActivity(),
+        final ListView listView = rootView.findViewById(android.R.id.list);
+        setListAdapter(new ArrayAdapter<>(getActivity(),
                 android.R.layout.simple_list_item_multiple_choice,
                 android.R.id.text1,
                 mChoices));

@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.action_bar);
+        Toolbar toolbar = findViewById(R.id.action_bar);
         setSupportActionBar(toolbar);
 
         if (savedInstanceState != null) {
@@ -55,9 +55,9 @@ public class MainActivity extends AppCompatActivity implements
         mWizardModel.registerListener(this);
 
         mPagerAdapter = new MyPagerAdapter(getSupportFragmentManager());
-        mPager = (ViewPager) findViewById(R.id.pager);
+        mPager = findViewById(R.id.pager);
         mPager.setAdapter(mPagerAdapter);
-        mStepPagerStrip = (StepPagerStrip) findViewById(R.id.strip);
+        mStepPagerStrip = findViewById(R.id.strip);
         mStepPagerStrip
                 .setOnPageSelectedListener(new StepPagerStrip.OnPageSelectedListener() {
                     @Override
@@ -70,8 +70,8 @@ public class MainActivity extends AppCompatActivity implements
                     }
                 });
 
-        mNextButton = (Button) findViewById(R.id.next_button);
-        mPrevButton = (Button) findViewById(R.id.prev_button);
+        mNextButton = findViewById(R.id.next_button);
+        mPrevButton = findViewById(R.id.prev_button);
 
         mPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
